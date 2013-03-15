@@ -19,7 +19,7 @@ This is just a demo of how to use AngularJS and PlayFramework.
 It's a single-page application with great AngularJS, which gets json data from server side via AJAX.
 The play framework just to provide json data.
 
-It's not provide REST api in this demo, since I think which is very useful for this demo.
+It's not provide REST api in this demo, since I think which is not very useful for this demo.
 Instead, I generate a JsRoutes.js which contains the action entries for the client to invoke.
 It may be improved in some way in the future.
 
