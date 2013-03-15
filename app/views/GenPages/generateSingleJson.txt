@@ -1,0 +1,5 @@
+%{ def iName = gh.getInstanceName(modelClsName) }%
+{
+#{list modelFields, as: 'f', separator: ','}
+"${f.name}" : ${'$'}{${iName}.${f.name}}#{/list}
+}

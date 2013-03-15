@@ -1,0 +1,5 @@
+angular.module('admin_common_data', ['myApp.services'])
+  .value('menuTree', {
+    data : ${menuTree.roots}
+  })
+  .value('privilegeButtonMap', ${privilegeButtonManager.map});

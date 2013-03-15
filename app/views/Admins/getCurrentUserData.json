@@ -1,0 +1,2 @@
+angular.module('current_user_data', [])
+  .value('current', #{render './current.json', current: current /})

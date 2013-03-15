@@ -1,0 +1,36 @@
+<div ng-show="showGridOptionsEditor" class="ng-cloak">
+    <button class="btn" ng-class="{'btn-primary':gridOptionsForEdit!=getGridOptionsAsJson()}" ng-click="saveGridOptions()">
+        Save
+    </button>
+    <button class="btn" ng-click="formatCode()">Format</button>
+    <button class="btn" ng-click="validateCode()">Validate Syntax</button>
+    <button class="btn" ng-click="resetConfig()">Reset</button>
+    <span ng-hide="validSyntax">有语法错误</span>
+    <textarea style="width:100%;height: 300px" ui-codemirror="{theme:'monokai'}" ui-refresh="gridOptionsForEdit" ng-model="gridOptionsForEdit"></textarea>
+</div>
+<div style="width:100%;height: 100%" class="ng-cloak">
+    <table class="grid">
+        <thead>
+        <tr>
+            <th class="row_check" ng-show="showCheckbox()">
+                <input type="checkbox" ng-click="toggleAllCheckboxes()" ng-checked="isAllRowsChecked()"/></th>
+            <th ng-repeat="col in gridOptions.columnDefs" ng-style="getCellStyle(col)">
+                {{col.displayName}}
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="row in getPager().list">
+            <td class="row_check" ng-show="showCheckbox()">
+                <input type="checkbox" ng-model="row.checked"/>
+            </td>
+            <td ng-repeat="col in gridOptions.columnDefs" ng-style="getCellStyle(col)" grid-cell>
+                {{row[col.field]}}
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <div>
+        <pagination on-select-page="getOnSelectPage()(page)" num-pages="getPager().pageCount" current-page="getPager().page" class="pagination-small"></pagination>
+    </div>
+</div>

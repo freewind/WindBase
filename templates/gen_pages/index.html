@@ -1,0 +1,19 @@
+<div>
+    <input type="text" class="input-medium search-query" ng-model="searchAction" autofocus="linkModalShown">
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Model</th>
+            <th>模板</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="row in rows | filter: searchAction">
+            <td>{{row}}</td>
+            <td>
+                <a class="btn" ng-href="/gen_pages/configure/{{row}}">定制</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>

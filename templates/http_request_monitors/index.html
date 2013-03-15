@@ -1,0 +1,19 @@
+<div>
+    <div class="btn-toolbar">
+        <div class="btn-group">
+            <button class="btn" button-code="5dcd66e74c36499a9d2e9242b55aafd3" ng-click="showDetail()" ng-disabled="!gridOptions.selectedRows || gridOptions.selectedRows.length==0">
+                查看
+            </button>
+            <button class="btn" button-code="cbb3ee96ccff4d22a7dc4a7fa8ec6f73" ng-click="configureGrid()" ng-class="{active: showGridOptionsEditor}">
+                配置表格
+            </button>
+        </div>
+    </div>
+
+    <div grid="{
+        id: '4028B8813CF2AA9B013CF2AA9B010000',
+        pager:'rows',
+        onSelectPage: 'onSelectPage'
+    }"></div>
+
+</div>

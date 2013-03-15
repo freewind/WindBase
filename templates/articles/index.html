@@ -1,0 +1,88 @@
+<style type="text/css">
+    .selected {
+        background-color: #ddd;
+    }
+
+    #CATEGORY_PANEL {
+        position: absolute;
+        left: 0px;
+        top: 0px;
+        width: 160px;
+    }
+
+    #ARTICLE_PANEL {
+        position: absolute;
+        left: 170px;
+        top: 0px;
+        right: 0px;
+    }
+</style>
+<div>
+    <div id="CATEGORY_PANEL">
+        <button class="btn btn-success" ng-click="showAddCategoryDialog(null)">
+            <span class="btn-label">创建根分类</span>
+        </button>
+        <script type="text/ng-template" id="tree_node.html">
+            <div ng-controller="articles.RowCtrl">
+                        <span ng-class="{selected: node==currentCategory}">
+                            <span ng-hide="edit">
+                                <a ng-click="setCurrentCategory(node)">{{node.name}}</a>
+                            </span>
+                            <span ng-show="edit">
+                                <input type="text" ng-model="editValue" class="input input-medium"
+                                       ui-keypress="{'esc':'cancelEdit()','enter':'update()'}"/>
+                                <button class="btn btn-small" style="color:red" ng-click="update()">
+                                    <i class="icon-ok"></i></button>
+                                <button class="btn btn-small" ng-click="cancelEdit()"><i class="icon-remove"></i>
+                                </button>
+                            </span>
+                        </span>
+                <a ng-click="showEdit()">[e]</a>
+                <a ng-click="showAddCategoryDialog(node)">[+]</a>
+                <a ng-click="removeCategory(node)" ng-show="!node.children || node.children.length==0">[-]</a>
+                <a ng-click="showChangeParentDialog(node)">[<]</a>
+                <ul ui-sortable="{stop: updateTree}" ng-model="node.children">
+                    <li ng-repeat="node in node.children" ng-include="'tree_node.html'"></li>
+                </ul>
+            </div>
+        </script>
+
+        <div id="menu_tree_view">
+            <ul ui-sortable="{stop: updateTree}" ng-model="categoryTree">
+                <li ng-repeat="node in categoryTree" ng-include="'tree_node.html'"></li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="ARTICLE_PANEL" ng-controller="articles.ArticleCtrl">
+        <div class="btn-toolbar">
+            <div class="btn-group">
+                <button class="btn" button-code="ea78c4ba31dc4fdb93102dbe67c9aa67"
+                        ng-click="showViewArticleDialog()" ng-disabled="selectedRows.length!=1">
+                    查看
+                </button>
+                <button class="btn" button-code="f4f90b6a2507429bb0e2ce1016c22127"
+                        ng-click="showAddArticleDialog()" ng-disabled="!currentCategory">
+                    新建
+                </button>
+                <button class="btn" button-code="2e41ab09f0fe4d8ebfd3c5981f87d502"
+                        ng-disabled="selectedRows.length!=1" ng-click="showEditArticleDialog()">
+                    编辑
+                </button>
+                <button class="btn" button-code="83c54c58459a4290bfb34b119eaf94c1"
+                        ng-disabled="selectedRows.length==0" ng-click="removeArticles()">
+                    删除
+                </button>
+                <button class="btn" button-code="1f233907bd3d4e3c8d89962398cd2a34"
+                        ng-click="configureGrid()">
+                    调整表格
+                </button>
+            </div>
+        </div>
+        <div grid="{
+            id: '402880843CAE4701013CAE4701B60000',
+            pager: 'currentCategory.articles',
+            onSelectedRows: 'onSelectedRows'
+        }"></div>
+    </div>
+</div>

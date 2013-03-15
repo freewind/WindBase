@@ -1,0 +1,18 @@
+<div class="modal-header">
+    <button class="close pull-right" ng-click="close()">&times;</button>
+    <h3>新建角色</h3>
+</div>
+<div class="modal-body">
+    <form class="form-horizontal">
+        <div class="control-group">
+            <label class="control-label">名称: </label>
+            <div class="controls">
+                <input type="text" ng-model="roleName"/>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="modal-footer">
+    <a class="btn btn-primary" ng-click="createRole()">提交</a>
+    <a class="btn" ng-click="close()">关闭</a>
+</div>

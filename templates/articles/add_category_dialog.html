@@ -1,0 +1,24 @@
+<div class="modal-header">
+    <button class="close pull-right" ng-click="close()">&times;</button>
+    <h3>添加分类</h3>
+</div>
+<div class="modal-body">
+    <form class="form form-horizontal">
+        <div class="control-group">
+            <label class="control-label">parent</label>
+            <div class="controls">
+                {{currentCategory.name}}
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label">name</label>
+            <div class="controls">
+                <input type="text" class="input input-normal" ng-model="name" autofocus="addCategoryModalShown"/>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-primary" ng-click="createCategory()">提交</button>
+    <a class="btn" ng-click="close()">关闭</a>
+</div>

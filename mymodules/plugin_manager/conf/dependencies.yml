@@ -1,0 +1,4 @@
+self: play -> plugin_manager 0.1
+
+require:
+    - play

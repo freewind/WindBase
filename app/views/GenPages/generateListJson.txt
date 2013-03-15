@@ -1,0 +1,6 @@
+%{ def iName = gh.getInstanceName(modelClsName) }%
+[
+${"#{list "+iName+"s, as: '"+iName+"', separator: ','}"}
+${"#{include './single.json' /}"}
+${'#{/list}'}
+]

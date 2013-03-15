@@ -1,0 +1,91 @@
+<style type="text/css">
+    #menu_tree_view {
+        padding: 0px 40px;
+    }
+
+    #menu_tree_view ul, #menu_tree_view li {
+        list-style: none;
+        padding-left: 0px;
+        margin-left: 0px;
+    }
+
+    #menu_tree_view .row {
+        line-height: 44px;
+        border-bottom: 1px solid #DDDDDD;
+    }
+
+    #menu_tree_view .row:hover {
+        background-color: #EEEEEE;
+    }
+
+    #menu_tree_view .menu_label {
+        width: 400px;
+        display: inline-block;
+    }
+
+    #linkDialog li {
+        cursor: pointer;
+    }
+
+    #linkDialog li:hover {
+        background-color: #6699cc;
+    }
+
+    #parent_modal li {
+        list-style: none;
+        margin-left: 15px;
+        padding-left: 0px;
+    }
+
+    #parent_modal .row {
+        padding: 3px 0px;
+    }
+</style>
+
+<div>
+    <div ng-show="menuTree" class="ng-cloak">
+        <div class="btn-toolbar">
+            <div class="btn-group">
+                <button class="btn" button-code="1ad64470cffc43a8b6770b1b3c283670" ng-click="showAddMenuDialog()">
+                    创建根节点
+                </button>
+            </div>
+        </div>
+        <div id="menu_tree_view">
+            <ul ui-sortable="{stop: updateTree}" ng-model="menuTree">
+                <li ng-repeat="item in menuTree" ng-include="'tree_item.html'"></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<script type="text/ng-template" id="tree_item.html">
+    <div class="row" ng-controller="admin_menus.RowCtrl">
+        <span class="menu_label">
+            <span menu-code="{{item.code}}">
+                <span ng-hide="edit" ng-click="showEdit()">{{item.name}}</span>
+                <span ng-show="edit">
+                    <input type="text" class="input-small" ng-model="editValue" focus="edit"/>
+                    <button class="btn" ng-click="submitEdit()"><i class="icon-ok" style="color:green"></i></button>
+                    <button class="btn" ng-click="cancelEdit()"><i class="icon-remove"></i></button>
+                </span>
+            </span>
+            <span>{{item.link}}</span>
+        </span>
+        <span>
+            <button class="btn" ng-click="showAddMenuDialog(item)" title="添加子菜单">
+                <i class="icon-plus">&nbsp;</i>
+            </button>
+            <button class="btn" ng-click="removeItem(item)" title="删除当前">
+                <i class="icon-minus">&nbsp;</i>
+            </button>
+            <button class="btn" ng-click="showIconDialog(item)" title="设置图标">Icon</button>
+            <button class="btn" ng-click="showLinkDialog(item)" title="设置链接">Link</button>
+            <button class="btn" ng-click="showParentDialog(item)" title="更改上级菜单项">Parent</button>
+        </span>
+    </div>
+    <ul ui-sortable="{stop: updateTree}" ng-model="item.children">
+        <li ng-repeat="item in item.children" ng-include="'tree_item.html'"></li>
+    </ul>
+</script>
+

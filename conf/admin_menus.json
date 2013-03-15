@@ -1,0 +1,118 @@
+[ {
+  "code" : "ef69d4ad648c4a59af2f2300dc51ed83",
+  "name" : "文章管理",
+  "children" : [ {
+    "code" : "03292605c6c247108bb39a6941f985c1",
+    "name" : "栏目管理",
+    "parentCode" : "ef69d4ad648c4a59af2f2300dc51ed83",
+    "children" : [ ],
+    "link" : "/articles",
+    "icon" : "icon-align-left",
+    "level" : 1
+  } ],
+  "icon" : "icon-book",
+  "level" : 0
+}, {
+  "code" : "21c2d1270f344d8b86588c72834d62a8",
+  "name" : "用户管理",
+  "children" : [ {
+    "code" : "d582f6308b0a43dc81f8c212a135a89e",
+    "name" : "用户列表",
+    "parentCode" : "21c2d1270f344d8b86588c72834d62a8",
+    "children" : [ ],
+    "link" : "/users",
+    "icon" : "icon-user",
+    "level" : 1
+  }, {
+    "code" : "f861a78739144a0b9d71e0e0d4bed202",
+    "name" : "角色管理",
+    "parentCode" : "21c2d1270f344d8b86588c72834d62a8",
+    "children" : [ ],
+    "link" : "/user_roles",
+    "icon" : "icon-bookmark",
+    "level" : 1
+  } ],
+  "icon" : "icon-user",
+  "level" : 0
+}, {
+  "code" : "a7cc9dc7614d418e852f17902f50068e",
+  "name" : "站点管理",
+  "children" : [ {
+    "code" : "696df4cc7cd64182a6e1b32f3e11082a",
+    "name" : "菜单管理",
+    "parentCode" : "a7cc9dc7614d418e852f17902f50068e",
+    "children" : [ ],
+    "link" : "/admin_menus",
+    "icon" : "icon-list",
+    "level" : 1
+  }, {
+    "code" : "ac1a49fcd964407e9bdbbba003a8fd86",
+    "name" : "权限按钮",
+    "parentCode" : "a7cc9dc7614d418e852f17902f50068e",
+    "children" : [ ],
+    "link" : "/privilege_buttons",
+    "icon" : "icon-key",
+    "level" : 1
+  }, {
+    "code" : "c7339fab05c242f99237b6dfc9e719ea",
+    "name" : "内部属性管理",
+    "parentCode" : "a7cc9dc7614d418e852f17902f50068e",
+    "children" : [ ],
+    "link" : "/internal_code_values",
+    "icon" : "icon-tasks",
+    "level" : 1
+  } ],
+  "icon" : "icon-magnet",
+  "level" : 0
+}, {
+  "code" : "7cade4052e3b4f129af2d5250deb891b",
+  "name" : "网站监控",
+  "children" : [ {
+    "code" : "27069d78f6634a59895e4ad418c8aae6",
+    "name" : "HTTP请求参数",
+    "parentCode" : "7cade4052e3b4f129af2d5250deb891b",
+    "children" : [ ],
+    "link" : "/http_request_monitors",
+    "icon" : "icon-eye-open",
+    "level" : 1
+  }, {
+    "code" : "90b386d621eb4a7b82316c0689daa5da",
+    "name" : "HTTP请求统计",
+    "parentCode" : "7cade4052e3b4f129af2d5250deb891b",
+    "children" : [ ],
+    "link" : "/http_request_summaries",
+    "icon" : "icon-bar-chart",
+    "level" : 1
+  }, {
+    "code" : "581e0bb10aff4149802ed96e0ac18003",
+    "name" : "站点状态",
+    "parentCode" : "7cade4052e3b4f129af2d5250deb891b",
+    "children" : [ ],
+    "icon" : "icon-lightbulb",
+    "level" : 1
+  } ],
+  "icon" : "icon-heart",
+  "level" : 0
+}, {
+  "code" : "79ff4f43ea0849839ab6a9fe6b9787d8",
+  "name" : "开发工具",
+  "parentCode" : "",
+  "children" : [ {
+    "code" : "913c6d66f03148d0ab7e09641512cc29",
+    "name" : "页面生成",
+    "parentCode" : "79ff4f43ea0849839ab6a9fe6b9787d8",
+    "children" : [ ],
+    "link" : "/gen_pages",
+    "icon" : "icon-edit",
+    "level" : 1
+  }, {
+    "code" : "83463be7daa24cfdba68a940555555d6",
+    "name" : "查看源文件",
+    "parentCode" : "79ff4f43ea0849839ab6a9fe6b9787d8",
+    "children" : [ ],
+    "icon" : "icon-qrcode",
+    "level" : 1
+  } ],
+  "icon" : "icon-facebook-sign",
+  "level" : 0
+} ]

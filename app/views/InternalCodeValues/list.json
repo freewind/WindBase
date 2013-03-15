@@ -1,0 +1,15 @@
+{
+  "totalCount" : ${rows.totalCount},
+  "pageSize": ${rows.pageSize},
+  "page": ${rows.page},
+  "pageCount" : ${rows.pageCount},
+  "list": [
+    #{list rows, as: 'row', separator: ','}
+    {
+      "id": ${row.id},
+      "code": ${row.code},
+      "value": ${row.value}
+    }
+    #{/list}
+  ]
+}

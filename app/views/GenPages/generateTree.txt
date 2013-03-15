@@ -1,0 +1,9 @@
+ <script type="text/ng-template" id="tree_item.html">
+    <span>{{item}}</span>
+ </script>
+
+<div id="menu_tree_view">
+    <ul ui-sortable ng-model="menuTree" ui-options="{stop: updateTree}">
+        <li ng-repeat="item in menuTree" ng-include="'tree_item.html'"></li>
+    </ul>
+</div>

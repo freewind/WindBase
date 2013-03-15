@@ -1,0 +1,28 @@
+<div class="modal-header">
+    <button class="close pull-right" ng-click="close()">&times;</button>
+    <h3>更改上级节点</h3>
+</div>
+<div class="modal-body">
+    <ul>
+        <li ng-repeat="item in menuTree" ng-hide="item.code==menuItem.code" ng-include="'node.html'"></li>
+    </ul>
+    <div ng-show="menuItem.parentCode">
+        或者，
+        <button class="btn" ng-click="setParentCode('')">设为根节点</button>
+    </div>
+</div>
+<div class="modal-footer">
+    <span class="pull-left">当前菜单：<i ng-class="menuItem.icon">&nbsp;</i> {{menuItem.name}}</span>
+    <a class="btn" ng-click="close()">关闭</a>
+</div>
+
+<script type="text/ng-template" id="node.html">
+    <div class="row">
+        <button class="btn" ng-click="setParentCode(item.code)">
+            <i ng-class="item.icon">&nbsp;</i>{{item.name}}
+        </button>
+    </div>
+    <ul>
+        <li ng-repeat="item in item.children" ng-hide="item.code==menuItem.code" ng-include="'node.html'"></li>
+    </ul>
+</script>

@@ -1,0 +1,43 @@
+<button onclick="sendMessage()">Click</button>
+<script type="text/javascript">
+    var conn;
+    var connect = function () {
+        if (window["WebSocket"]) {
+            recvd = 0;
+            //host = (document.location.host != "" ? document.location.host : "localhost:8000");
+            host = "localhost:9000";
+            conn = new WebSocket("ws://" + host + "/helloSocket");
+            console.log("created connection");
+
+            conn.onmessage = function (evt) {
+                console.log(evt.data);
+
+                // conn.close();
+                // log(connections++);
+                // connect();
+
+                // if(recvd == 0){
+                //   conn.id = parseInt(evt.data.match(/\: ([0-9]+)/)[1], 10);
+                // }
+                // recvd++;
+            };
+
+            conn.onerror = function () {
+                console.log("error", arguments);
+            };
+
+            conn.onclose = function () {
+                console.log("closed");
+                conn = false;
+            };
+
+            conn.onopen = function () {
+                console.log("opened");
+            };
+        }
+    };
+    function sendMessage() {
+        conn.send("hello");
+    }
+    window.onload = connect;
+</script>

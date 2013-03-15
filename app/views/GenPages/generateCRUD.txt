@@ -1,0 +1,56 @@
+package controllers;
+
+%{
+def simpleName = gh.getSimpleName(modelClsName);
+def iName = gh.getInstanceName(simpleName);
+def parameters = gh.getParameters(modelFields);
+}%
+
+public class ${simpleName}s extends BaseAdminController {
+
+    public static void index() {
+    }
+
+    public static void add() {
+    }
+
+    public static void create(${parameters}) {
+        ${simpleName} ${iName} = new ${simpleName}();
+        #{list modelFields, as: 'f'}
+        ${iName}.${f.name} = ${f.name};#{/list}
+        ${iName}.save();
+        render("@single", ${iName});
+    }
+
+    public static void list(${parameters}) {
+        List<${simpleName}> ${iName}s = ${simpleName}.find.all();
+        render(${iName}s);
+    }
+
+    public static void show(String id) {
+        ${simpleName} ${iName} = ${simpleName}.find.byId(id);
+        render(${iName});
+    }
+
+    public static void edit(String id) {
+        ${simpleName} ${iName} = ${simpleName}.find.byId(id);
+        render(${iName});
+    }
+
+    public static void update(String id, ${parameters}) {
+        ${simpleName} ${iName} = ${simpleName}.find.byId(id);
+        #{list modelFields, as: 'f'}
+        ${iName}.${f.name} = ${f.name};#{/list}
+        ${iName}.save();
+        renderJSON(App.toJson(${iName}));
+    }
+
+    public static void remove(String[] ids) {
+        for(String id: ids) {
+            ${simpleName} ${iName} = ${simpleName}.find.byId(id);
+            ${iName}.delete();
+        }
+        ok();
+    }
+
+}

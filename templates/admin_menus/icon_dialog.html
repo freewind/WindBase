@@ -1,0 +1,36 @@
+<style>
+    .icon_container {
+        padding: 5px;
+        display: inline-block;
+    }
+
+    .icon_container:hover {
+        background-color: #6699cc;
+        cursor: pointer;
+    }
+
+    .icon_container .icon_label {
+        padding-left: 5px;
+    }
+</style>
+
+<div class="modal-header">
+    <div>
+        <button class="close pull-right" ng-click="close()">&times;</button>
+        <h3>设置图标</h3>
+        <i ng-class="hoverIcon || menuItem.icon">&nbsp;</i>&nbsp;{{menuItem.name}}
+    </div>
+</div>
+<div class="modal-body">
+    <div>
+        <input type="text" class="icon icon-search" ng-model="searchKey"/>
+    </div>
+    <span ng-repeat="icon in icons | filter:searchKey" class="icon_container" ng-click="setIcon(icon)"
+          ng-mouseenter="$parent.hoverIcon=icon">
+        <i ng-class="icon">&nbsp; </i>
+    </span>
+</div>
+<div class="modal-footer">
+    <span class="pull-left">{{hoverIcon}}</span>
+    <a class="btn" ng-click="close()">关闭</a>
+</div>

@@ -1,0 +1,40 @@
+# Application dependencies
+
+require:
+    - play
+#    - play -> secure
+#    - play -> console
+    - ebean_wind -> ebean_wind 0.2.1
+#    - org.codehaus.jackson -> jackson-asl 0.9.5
+    - com.fasterxml.jackson.core -> jackson-core 2.1.2
+    - com.fasterxml.jackson.core -> jackson-databind 2.1.2
+    - com.fasterxml.jackson.core -> jackson-annotations 2.1.2
+    - net.coobird -> thumbnailator 0.4.2
+    - commons-httpclient -> commons-httpclient 3.1
+    - org.apache.commons -> commons-exec 1.1
+    - org.apache.httpcomponents -> httpmime 4.2.2
+    - org.jsoup -> jsoup 1.7.1
+    - org.op4j -> op4j 1.2
+#    - wind_console -> wind_console
+#    - plugin_manager -> plugin_manager
+    - org.easytesting -> fest-assert 1.4
+#    - net.sf.json-lib -> json-lib 2.4
+#    - org.pegdown -> pegdown 1.1.0
+
+repositories:
+    - global modules:
+        type: local
+        artifact: ${application.path}/../[module]
+        contains:
+            - wind_console
+    - zip modules:
+        type: local
+        artifact: ${application.path}/mymodules/[module]-[revision].zip
+        contains:
+            - ebean_wind
+    - project modules:
+          type: local
+          artifact: ${application.path}/mymodules/[module]
+          contains:
+              - plugin_manager
+

@@ -1,0 +1,19 @@
+<div id="linkDialog">
+    <div class="modal-header">
+        <button class="close pull-right" ng-click="close()">&times;</button>
+        <input type="text" class="input-medium search-query" ng-model="searchRoute">
+    </div>
+    <div class="modal-body">
+        <ul>
+            <li ng-repeat="route in routes | filter: searchRoute" ng-click="setLink(route)">
+                <span ng-show="route.module">[{{route.module}}] </span>{{route.name}} - {{route.templateUrl}}
+            </li>
+        </ul>
+    </div>
+    <div class="modal-footer">
+            <span ng-show="menuItem.link" class="pull-left">
+                或者 <button class="btn" ng-click="setLink(null)">移除当前链接</button>
+            </span>
+        <a class="btn" ng-click="close()">关闭</a>
+    </div>
+</div>

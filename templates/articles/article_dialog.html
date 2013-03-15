@@ -1,0 +1,21 @@
+<div class="modal-header">
+    <button class="close pull-right" ng-click="close()">&times;</button>
+    <h3>Title</h3>
+</div>
+<div class="modal-body">
+    <div class="control-group">
+        分类: {{currentCategory.name}}
+    </div>
+    <div class="control-group">
+        <input type="text" class="input input-xxlarge" ng-model="title"
+               autofocus="addArticleModalShown" placeholder="标题"/>
+    </div>
+    <div class="control-group">
+        <textarea class="input input-xxlarge" rows="20" ng-model="content"></textarea>
+    </div>
+</div>
+<div class="modal-footer">
+    <a class="btn btn-primary" ng-click="createArticle()" ng-hide="article">提交</a>
+    <a class="btn btn-primary" ng-click="updateArticle()" ng-show="article">更新</a>
+    <a class="btn" ng-click="close()">关闭</a>
+</div>

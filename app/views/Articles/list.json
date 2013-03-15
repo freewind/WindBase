@@ -1,0 +1,11 @@
+{
+  "totalCount" : ${articles.totalCount},
+  "pageSize": ${articles.pageSize},
+  "page": ${articles.page},
+  "pageCount" : ${articles.pageCount},
+  "list": [
+    #{list articles, as: 'article', separator: ','}
+    #{include './single.json' /}
+    #{/list}
+  ]
+}

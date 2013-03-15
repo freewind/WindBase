@@ -1,0 +1,165 @@
+#{extends 'admin.html'/}
+
+<style type="text/css">
+    .hide_field {
+        color: #AAA;
+        text-decoration: line-through;
+    }
+</style>
+<div ng-controller="Ctrl">
+    <form class="form-horizontal">
+        <legend>定制页面</legend>
+        <div class="control-group">
+            <label class="control-label">Action</label>
+            <div class="controls">
+                <input type="button" class="btn" ng-click="actionModalShown=true" value="{{selectedAction || '...'}}"/>
+                <span ng-show="actionHasView">
+                    <a ng-href="@{Application.showViewSource()}?path={{selectedAction}}" class="btn btn-mini btn-inverse"" target="_blank">查看View源代码</a>
+                    <a ng-href="@{Application.toAction()}?path={{selectedAction}}" class="btn btn-mini btn-inverse" target="_blank">访问</a>
+                </span>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label">Model</label>
+            <div class="controls">
+                <input type="button" class="btn" ng-click="modelModalShown=true" value="{{selectedModel || '...'}}"/>
+            </div>
+        </div>
+        <div class="control-group" ng-show="selectedAction && selectedModel">
+            <div class="controls">
+                <button class="btn btn-primary" ng-click="show()">调整</button>
+                <button class="btn btn-primary" ng-click="generateView()" ng-show="modelFields">更新页面</button>
+            </div>
+        </div>
+    </form>
+
+    <table class="table table-fixed">
+        <thead>
+        <tr>
+            <th width="80px">Label</th>
+            <th width="80px">Field Name</th>
+            <th width="160px">Length</th>
+            <th width="100px"></th>
+            <th width="50px">Type</th>
+            <th width="30px">Hide</th>
+        </tr>
+        </thead>
+        <tbody ui-sortable ng-model="modelFields">
+        <tr ng-repeat="field in modelFields" ng-class="field.hide && 'hide_field'">
+            <td>
+                <span ng-hide="edit" ng-click="edit=true">{{field.label}}</span>
+                <span ng-show="edit" ui-keypress="{'esc':'edit=false'}"><input type="text" ng-model="field.label"/></span>
+            </td>
+            <td>{{field.name}}</td>
+            <td>
+                <div slider="{min:0,max:500}" ng-model="field.minWidth"></div>
+            </td>
+            <td>
+                <input class="input input-small" type="text" ng-model="field.minWidth"/>
+            </td>
+            <td>{{field.type}}</td>
+            <td><input type="checkbox" ng-model="field.hide"/></td>
+        </tr>
+        </tbody>
+    </table>
+
+    <table class="table table-bordered table-fixed" ng-show="modelFields">
+        <thead>
+        <tr>
+            <th ng-repeat="field in modelFields | filter: {hide:false}" ng-style="{'min-width': field.minWidth + 'px','max-width': field.minWidth + 'px'}">
+                {{field.label}}
+            </th>
+        </tr>
+        <tr>
+            <th ng-repeat="field in modelFields | filter: {hide:false}" ng-style="{'min-width': field.minWidth + 'px','max-width': field.minWidth + 'px'}">
+                <div slider="{min:0,max:500}" ng-model="field.minWidth" style="max-width: 100px"></div>
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="row in rows">
+            <td ng-repeat="field in modelFields | filter: {hide:false}" ng-style="{'min-width': field.minWidth + 'px','max-width': field.minWidth + 'px'}" style="overflow: auto">
+                {{row[field.name]}}
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <div ui-modal class="fade" ng-model="modelModalShown">
+        <div class="modal-header">
+            <button class="close pull-right" ng-click="close()">&times;</button>
+            <input type="text" class="input-medium search-query" ng-model="searchModel" autofocus="modelModalShown">
+        </div>
+        <div class="modal-body">
+            <ul>
+                <li ng-repeat="model in models | filter: searchModel" ng-click="selectModel(model)"
+                    class="pointer">{{model}}
+                </li>
+            </ul>
+        </div>
+        <div class="modal-footer">
+            <a class="btn" data-dismiss="modal">关闭</a>
+        </div>
+    </div>
+
+    <div ui-modal class="fade" ng-model="actionModalShown">
+        <div class="modal-header">
+            <button class="close pull-right" ng-click="close()">&times;</button>
+            <input type="text" class="input-medium search-query" ng-model="searchAction" autofocus="actionModalShown">
+        </div>
+        <div class="modal-body">
+            <ul>
+                <li ng-repeat="action in actions | filter: searchAction" ng-click="selectAction(action)"
+                    class="pointer">{{action}}
+                </li>
+            </ul>
+        </div>
+        <div class="modal-footer">
+            <a class="btn" data-dismiss="modal">关闭</a>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    function Ctrl($scope, $filter, JsRoutes) {
+        $scope.actions = ${actions.toJson()}
+        $scope.models = ${models.toJson()}
+        $scope.selectModel = function (model) {
+            $scope.selectedModel = model;
+            $scope.modelModalShown = false;
+        }
+        $scope.show = function () {
+            JsRoutes.GenPages.getModelData.post({
+                actionPath: $scope.selectedAction,
+                modelClsName: $scope.selectedModel
+            }, function (data) {
+                $scope.modelFields = data.modelFields;
+                $scope.rows = data.rows;
+            });
+        }
+        $scope.selectAction = function (action) {
+            JsRoutes.GenPages.checkActionView.post({
+                path: action
+            }, function (hasView) {
+                $scope.actionHasView = hasView;
+                $scope.selectedAction = action;
+                $scope.actionModalShown = false;
+            })
+        }
+        $scope.generateView = function () {
+            JsRoutes.GenPages.generateView.post({
+                selectedAction: $scope.selectedAction,
+                selectedModel: $scope.selectedModel,
+                modelFields: $filter('json')($scope.modelFields)
+            }, function () {
+                alert("操作成功");
+            });
+        }
+    #{if selectedAction}
+        $scope.selectAction( ${selectedAction.toJson()});
+    #{/if}
+    #{if selectedModel}
+        $scope.selectModel(${selectedModel.toJson()});
+    #{/if}
+    }
+</script>

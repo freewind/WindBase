@@ -1,0 +1,26 @@
+<div>
+    <div class="modal-header">
+        <button class="close pull-right" ng-click="close()">&times;</button>
+        <input type="text" class="input input-search input-small" ng-model="searchUserEmail" placeholder="Email"/>
+        <input type="text" class="input input-search input-small" ng-model="searchUserUsername" placeholder="Username"/>
+        <input type="text" class="input input-search input-small" ng-model="searchUserName" placeholder="真实姓名"/>
+        <button class="btn btn-primary" ng-click="searchUser()">搜索</button>
+        <button class="btn" ng-click="clearSearch()">清空</button>
+    </div>
+    <div class="modal-body">
+        <table>
+            <tr ng-repeat="user in searchUserResult">
+                <td>{{user.email}}</td>
+                <td>{{user.username}}</td>
+                <td>{{user.name}}</td>
+                <td>
+                    <button class="btn" ng-click="addUserToRole(user)">选中</button>
+                    <button class="btn">xxx</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="modal-footer">
+        <a class="btn" ng-click="close()">关闭</a>
+    </div>
+</div>

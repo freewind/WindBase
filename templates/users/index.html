@@ -1,0 +1,152 @@
+<div>
+
+    <div class="btn-toolbar">
+        <div class="btn-group">
+            <button class="btn" button-code="c8b71f3a2fd043aaa6f0c8438049db3c" ng-click="showAddDialog()">
+                新建
+            </button>
+            <button class="btn" button-code="bde22325a3204fdf859dd507d07b3c30" ng-disabled="selectedRows.length!=1"
+                    ng-click="showEditDialog()">
+                编辑
+            </button>
+            <button class="btn" button-code="25bdd39295df4ce09d8fbe9860368e19" ng-disabled="selectedRows.length==0"
+                    ng-click="removeUser()">
+                删除
+            </button>
+            <button class="btn" button-code="f2da265f64a14412b768a38ce6a0a896" ng-disabled="selectedRows.length!=1"
+                    ng-click="changePassword()">
+                修改密码
+            </button>
+            <button class="btn" button-code="b38e162b1bba41d2af415e47efd876ca" ng-disabled="selectedRows.length==0"
+                    ng-click="setUserStatus(false)">
+                停用
+            </button>
+            <button class="btn" button-code="810a61a292ae4d3989acfe245e125522" ng-disabled="selectedRows.length==0"
+                    ng-click="setUserStatus(true)">
+                启用
+            </button>
+            <button class="btn" button-code="269b9d2a1d364b28a5937fa366f9352f" ng-click="configureGrid()">
+                配置表格
+            </button>
+        </div>
+    </div>
+
+    <div grid="{
+        id: '402880843CAE4701013CAE594B390001',
+        pager: 'users',
+        onSelectedRows: 'onSelectedRows',
+        onSelectPage: 'onSelectPage'
+    }"></div>
+</div>
+
+<script type="text/ng-template" id="addModal.html">
+    <div>
+        <div class="modal-header">
+            <button class="close pull-right" ng-click="close()">&times;</button>
+            <h3>添加User</h3>
+        </div>
+        <div class="modal-body">
+            <form class="form form-horizontal">
+
+                <div class="control-group">
+                    <label class="control-label">email</label>
+                    <div class="controls">
+                        <input type="text" class="input input-normal" ng-model="addEmail"
+                               autofocus="addModalShown"/>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label">username</label>
+                    <div class="controls">
+                        <input type="text" class="input input-normal" ng-model="addUsername"/>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label">password</label>
+                    <div class="controls">
+                        <input type="text" class="input input-normal" ng-model="addPassword"/>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" ng-click="createUser()">提交</button>
+            <a class="btn" ng-click="close()">关闭</a>
+        </div>
+    </div>
+</script>
+
+<script type="text/ng-template" id="editModal.html">
+    <div>
+        <div class="modal-header">
+            <button class="close pull-right" ng-click="close()">&times;</button>
+            <h3>修改User</h3>
+        </div>
+        <div class="modal-body">
+            <form class="form form-horizontal">
+
+                <div class="control-group">
+                    <label class="control-label">email</label>
+                    <div class="controls">
+                        <input type="text" class="input input-normal" ng-model="email"/>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label">username</label>
+                    <div class="controls">
+                        <input type="text" class="input input-normal" ng-model="username"/>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" ng-click="updateUser()">提交</button>
+            <a class="btn" ng-click="close()">关闭</a>
+        </div>
+    </div>
+</script>
+
+<script type="text/ng-template" id="changePasswordDialog.html">
+    <div>
+        <div class="modal-header">
+            <button class="close pull-right" ng-click="close()">&times;</button>
+            <h3>修改密码</h3>
+        </div>
+        <div class="modal-body">
+            <form class="form form-horizontal">
+
+                <div class="control-group">
+                    <label class="control-label">email</label>
+                    <div class="controls">
+                        {{user.email}}
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label">username</label>
+                    <div class="controls">
+                        {{user.username}}
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label">Password</label>
+                    <div class="controls">
+                        <input type="text" class="input input-normal" ng-model="password"/>
+                        (留空则不变)
+                    </div>
+                </div>
+
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" ng-click="change()">修改密码</button>
+            <a class="btn" ng-click="close()">关闭</a>
+        </div>
+    </div>
+</script>

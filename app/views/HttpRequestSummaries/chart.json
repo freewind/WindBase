@@ -1,0 +1,49 @@
+{
+"options" : {
+    "yaxis": { },
+    "xaxis": {
+        "mode": "time",
+        *{ https://github.com/flot/flot/blob/master/API.md#time-series-data }*
+        #{if timeUnit == 'minute'}
+        "timeformat": "%H:%M",
+        "minTickSize": [1, "minute"]
+        #{/if}
+        #{elseif timeUnit=='hour'}
+        "timeformat": "%m-%d %H",
+        "minTickSize": [1, "hour"]
+        #{/elseif}
+        #{elseif timeUnit=='day'}
+        "timeformat": "%m-%d",
+        "minTickSize": [1, "day"]
+        #{/elseif}
+        #{elseif timeUnit=='week'}
+        "minTickSize": [7, "day"],
+        "tickFormatter": "function(num){ return getWeek(num); }"
+        #{/elseif}
+        #{elseif timeUnit=='month'}
+        "timeformat": "%y-%m",
+        "minTickSize": [1, "month"]
+        #{/elseif}
+        #{elseif timeUnit=='year'}
+        "timeformat": "%y",
+        "minTickSize": [1, "year"]
+        #{/elseif}
+    },
+    "lines": {"show": true},
+    "points": {"show": true},
+    "clickable":true,
+    "hoverable": true
+},
+"data": [
+#{list ["total", "get", "post", "page", "js", "css", "image", "otherResource", "ajax"], as: 'type', separator: ','}
+{
+  "label": ${type},
+  "data": [
+  #{list rows, as: 'row', separator: ','}
+  [${row.timeStart.getTime()}, ${row[type+'Count']}]
+  #{/list}
+  ]
+}
+#{/list}
+]
+}

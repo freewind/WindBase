@@ -1,0 +1,9 @@
+{
+  "user": {
+    "id": ${current?.id},
+    "username": ${current?.username},
+    "name": ${current?.name},
+    "email": ${current?.email}
+  },
+  "privilegeCodes": ${current?.privilegeCodes}
+}

@@ -1,0 +1,110 @@
+
+
+[class^="icon-"], [class*=" icon-"] {
+    width: auto;
+    vertical-align: middle;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+.table-fixed {
+    width: auto;
+    max-width: none;
+    table-layout: fixed;
+}
+
+.table-as-layout {
+}
+
+.table-as-layout {
+}
+
+.table-as-layout td {
+    vertical-align: top;
+    padding: 10px;
+}
+
+.grid tr:hover {
+    background-color: #F6F6F6;
+}
+
+.grid thead th {
+    background-color: #EEEEEE;
+    line-height: 26px;
+    border: 1px solid #DDD;
+    padding: 4px;
+}
+
+.grid .row_check {
+    text-align: center;
+    vertical-align: middle;
+}
+
+.grid td {
+    border: 1px solid #DDD;
+    line-height: 24px;
+    padding: 0px 4px;
+}
+
+.debug {
+    display: inline-block;
+}
+
+.debug-hide {
+    display: none;
+}
+
+#admin_left_menu {
+    padding: 0px 10px;
+    white-space: nowrap;
+}
+
+#TOP_PANEL {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    height: 42px;
+    min-width: 1000px;
+}
+
+#LEFT_SIDEBAR {
+    position: absolute;
+    top: 50px;
+    left: 0px;
+    width: 160px;
+    margin-right: 20px;
+}
+
+#MAIN_PANEL {
+    position: absolute;
+    top: 50px;
+    left: 180px;
+    right: 0px;
+    bottom: 0px;
+    overflow: scroll;
+}
+
+[ng\:cloak], [ng-cloak], .ng-cloak {
+    display: none;
+}
+
+.btn.not_allowed {
+    cursor: not-allowed;
+    color: #333333;
+    background-color: #e6e6e6;
+    *background-color: #d9d9d9;
+    background-image: none;
+    opacity: 0.65;
+    filter: alpha(opacity = 65);
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+}
+
+.CodeMirror {
+    font-family: "Courier New", monospace;
+}
+

@@ -1,0 +1,66 @@
+<style type="text/css">
+    .enable_field {
+    }
+
+    .hide_field {
+        color: #AAA;
+        text-decoration: line-through;
+    }
+</style>
+<div>
+    <table>
+        <tr>
+            <td valign="top">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Enable</th>
+                        <th>Field Name</th>
+                        <th>Label</th>
+                        <th ui-fixed-width="100px">Fixed Width</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody ui-sortable ng-model="rows">
+                    <tr ng-repeat="row in rows" ng-class="row.enable && 'enable_field' || 'hide_field'">
+                        <td><input type="checkbox" ng-model="row.enable"/></td>
+                        <td>{{row.name}}</td>
+                        <td>{{row.label}}</td>
+                        <td>
+                            <div slider="{min:0,max:500,step:5}" ng-model="row.width"></div>
+                        </td>
+                        <td><input class="input input-mini" type="text" ng-model="row.width"/></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </td>
+            <td valign="top">
+                <div>
+                    最大行高:<input class="input input-mini" type="text" ng-model="maxLineHeight"/>
+                    使用Checkbox选择行: <input type="checkbox" ng-model="showCheckBoxes"/>
+                </div>
+                <div>
+                    <div>
+                        <button class="btn" ng-click="generateCRUD()">Controller(CRUD)</button>
+                        <button class="btn" ng-click="generateExData()">ExData(for Haxe)</button>
+                    </div>
+                    <div>
+                        <button class="btn" ng-click="generateTable()">View(list)</button>
+                        <button class="btn" ng-click="generateAdd()">View(add)</button>
+                        <button class="btn" ng-click="generateShow()">View(show)</button>
+                        <button class="btn" ng-click="generateEdit()">View(edit)</button>
+                        <button class="btn" ng-click="generateTree()">View(tree)</button>
+                    </div>
+                    <div>
+                        Json:
+                        <button class="btn" ng-click="generateSingleJson()">single.json</button>
+                        <button class="btn" ng-click="generateListJson()">list.json</button>
+                    </div>
+                </div>
+                <div>
+                    <textarea class="input input-xxlarge" rows="40">{{generatedCode}}</textarea>
+                </div>
+            </td>
+        </tr>
+    </table>
+</div>

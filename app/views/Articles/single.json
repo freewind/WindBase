@@ -1,0 +1,11 @@
+{
+    "id": ${article.id},
+    "title": ${article.title},
+    "content": ${article.content},
+    "category": {
+        "id": ${article.category.id},
+        "name": ${article.category.name}
+    },
+    "createdAt": ${article.createdAt.format('yyyy-MM-dd HH:mm:ss')},
+    "updatedAt": ${article.updatedAt?.format('yyyy-MM-dd HH:mm:ss')}
+}

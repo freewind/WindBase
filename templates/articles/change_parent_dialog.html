@@ -1,0 +1,22 @@
+<div class="modal-header">
+    <button class="close pull-right" ng-click="close()">&times;</button>
+    <h3>更改上级分类</h3>
+</div>
+<div class="modal-body">
+    <ul ui-sortable ng-model="categoryTree">
+        <li ng-repeat="node in categoryTree" ng-include="'changeParentDialog_changeNode.html'" ng-hide="node.code==currentCategory.code"></li>
+    </ul>
+</div>
+<div class="modal-footer">
+            <span class="pull-left" ng-show="currentCategory.parentCode">或者，<button class="btn" ng-click="changeParent()">
+                设为根分类
+            </button></span>
+    <a class="btn" ng-click="close()">关闭</a>
+</div>
+
+<script type="text/ng-template" id="changeParentDialog_changeNode.html">
+    <button class="btn" ng-click="changeParent(node)">{{node.name}}</button>
+    <ul ui-sortable ng-model="node.children">
+        <li ng-repeat="node in node.children" ng-include="'changeParentDialog_changeNode.html'" ng-hide="node.code==currentCategory.code"></li>
+    </ul>
+</script>

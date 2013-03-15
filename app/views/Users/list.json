@@ -1,0 +1,11 @@
+{
+  "totalCount" : ${users.totalCount},
+  "pageSize": ${users.pageSize},
+  "page": ${users.page},
+  "pageCount" : ${users.pageCount},
+  "list": [
+    #{list users, as: 'user', separator: ','}
+        #{include './single.json' /}
+    #{/list}
+  ]
+}

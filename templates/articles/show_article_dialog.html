@@ -1,0 +1,11 @@
+<div class="modal-header">
+    <button class="close pull-right" ng-click="close()">&times;</button>
+    <h3>{{article.title}}</h3>
+</div>
+<div class="modal-body">
+    {{article.content}}
+</div>
+<div class="modal-footer">
+    <span class="pull-left">{{article.category.name}}</span>
+    <a class="btn" ng-click="close()">关闭</a>
+</div>

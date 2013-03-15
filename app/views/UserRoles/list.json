@@ -1,0 +1,5 @@
+[
+#{list roles, as: 'role', separator: ','}
+#{include './single.json' /}
+#{/list}
+]

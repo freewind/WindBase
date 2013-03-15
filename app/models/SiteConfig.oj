@@ -1,0 +1,27 @@
+package models;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+/**
+ * Member: Freewind
+ * Date: 12-12-19
+ * Time: 下午3:34
+ */
+@Entity
+@Table(name = "site_configs")
+public class SiteConfig extends UuidIdModel {
+
+    @Column(columnDefinition = "TEXT", unique = true, nullable = false)
+    public String code;
+
+    @Column(columnDefinition = "TEXT")
+    public String value;
+
+    @Column(columnDefinition = "TEXT")
+    public String description;
+
+    public static Finder<String, SiteConfig> find = new Finder<String, SiteConfig>(String.class, SiteConfig.class);
+
+}

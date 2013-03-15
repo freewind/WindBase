@@ -1,0 +1,134 @@
+{
+  "27069d78f6634a59895e4ad418c8aae6" : [ {
+    "menuCode" : "27069d78f6634a59895e4ad418c8aae6",
+    "code" : "a7dcc702463e438d82d1de2a73449ada",
+    "name" : "配置表格",
+    "icon" : "icon-table"
+  }, {
+    "menuCode" : "27069d78f6634a59895e4ad418c8aae6",
+    "code" : "5dcd66e74c36499a9d2e9242b55aafd3",
+    "name" : "查看",
+    "icon" : "icon-list-alt"
+  }, {
+    "menuCode" : "27069d78f6634a59895e4ad418c8aae6",
+    "code" : "cbb3ee96ccff4d22a7dc4a7fa8ec6f73",
+    "name" : "修改表格参数",
+    "icon" : "icon-credit-card"
+  } ],
+  "90b386d621eb4a7b82316c0689daa5da" : [ {
+    "menuCode" : "90b386d621eb4a7b82316c0689daa5da",
+    "code" : "ed000a774adc4ee8977fb78955a519ba",
+    "name" : "配置表格",
+    "icon" : "icon-table"
+  }, {
+    "menuCode" : "90b386d621eb4a7b82316c0689daa5da",
+    "code" : "7bfadad16b0844c8a4b8f4a5597799d3",
+    "name" : "显示图表",
+    "icon" : "icon-bar-chart"
+  } ],
+  "03292605c6c247108bb39a6941f985c1" : [ {
+    "menuCode" : "03292605c6c247108bb39a6941f985c1",
+    "code" : "f4f90b6a2507429bb0e2ce1016c22127",
+    "name" : "新建",
+    "icon" : "icon-plus-sign"
+  }, {
+    "menuCode" : "03292605c6c247108bb39a6941f985c1",
+    "code" : "2e41ab09f0fe4d8ebfd3c5981f87d502",
+    "name" : "编辑",
+    "icon" : "icon-edit"
+  }, {
+    "menuCode" : "03292605c6c247108bb39a6941f985c1",
+    "code" : "83c54c58459a4290bfb34b119eaf94c1",
+    "name" : "删除",
+    "icon" : "icon-minus-sign"
+  }, {
+    "menuCode" : "03292605c6c247108bb39a6941f985c1",
+    "code" : "1f233907bd3d4e3c8d89962398cd2a34",
+    "name" : "调整表格",
+    "icon" : "icon-table"
+  }, {
+    "menuCode" : "03292605c6c247108bb39a6941f985c1",
+    "code" : "ea78c4ba31dc4fdb93102dbe67c9aa67",
+    "name" : "查看",
+    "icon" : "icon-eye-open"
+  } ],
+  "f861a78739144a0b9d71e0e0d4bed202" : [ {
+    "menuCode" : "f861a78739144a0b9d71e0e0d4bed202",
+    "code" : "c7a10afa01a441d49152eec8d3dee18c",
+    "name" : "新建",
+    "icon" : "icon-plus-sign"
+  }, {
+    "menuCode" : "f861a78739144a0b9d71e0e0d4bed202",
+    "code" : "09d84dfac3044a05b8c199bbf9208a7c",
+    "name" : "编辑",
+    "icon" : "icon-edit"
+  }, {
+    "menuCode" : "f861a78739144a0b9d71e0e0d4bed202",
+    "code" : "f0c14b7453d940bf941b4fc65c711c1a",
+    "name" : "删除",
+    "icon" : "icon-minus-sign"
+  }, {
+    "menuCode" : "f861a78739144a0b9d71e0e0d4bed202",
+    "code" : "78091141031a4671a65fc84fbd7ec179",
+    "name" : "向角色中添加用户",
+    "icon" : ""
+  }, {
+    "menuCode" : "f861a78739144a0b9d71e0e0d4bed202",
+    "code" : "ee4e60f1a67e4610ae7e0f5ee5e741c4",
+    "name" : "从角色中删除用户",
+    "icon" : ""
+  }, {
+    "menuCode" : "f861a78739144a0b9d71e0e0d4bed202",
+    "code" : "8a2f43326574418e8ac0006abb0cf442",
+    "name" : "配置表格",
+    "icon" : "icon-table"
+  } ],
+  "c7339fab05c242f99237b6dfc9e719ea" : [ {
+    "menuCode" : "c7339fab05c242f99237b6dfc9e719ea",
+    "code" : "620e9463873043e58d1b5ef7815580f1",
+    "name" : "配置表格",
+    "icon" : "icon-table"
+  } ],
+  "d582f6308b0a43dc81f8c212a135a89e" : [ {
+    "menuCode" : "d582f6308b0a43dc81f8c212a135a89e",
+    "code" : "c8b71f3a2fd043aaa6f0c8438049db3c",
+    "name" : "新建",
+    "icon" : "icon-plus-sign"
+  }, {
+    "menuCode" : "d582f6308b0a43dc81f8c212a135a89e",
+    "code" : "bde22325a3204fdf859dd507d07b3c30",
+    "name" : "编辑",
+    "icon" : "icon-edit"
+  }, {
+    "menuCode" : "d582f6308b0a43dc81f8c212a135a89e",
+    "code" : "25bdd39295df4ce09d8fbe9860368e19",
+    "name" : "删除",
+    "icon" : "icon-minus-sign"
+  }, {
+    "menuCode" : "d582f6308b0a43dc81f8c212a135a89e",
+    "code" : "f2da265f64a14412b768a38ce6a0a896",
+    "name" : "修改密码",
+    "icon" : "icon-edit"
+  }, {
+    "menuCode" : "d582f6308b0a43dc81f8c212a135a89e",
+    "code" : "b38e162b1bba41d2af415e47efd876ca",
+    "name" : "停用",
+    "icon" : "icon-ban-circle"
+  }, {
+    "menuCode" : "d582f6308b0a43dc81f8c212a135a89e",
+    "code" : "810a61a292ae4d3989acfe245e125522",
+    "name" : "启用",
+    "icon" : "icon-ok-circle"
+  }, {
+    "menuCode" : "d582f6308b0a43dc81f8c212a135a89e",
+    "code" : "269b9d2a1d364b28a5937fa366f9352f",
+    "name" : "配置表格",
+    "icon" : "icon-table"
+  } ],
+  "696df4cc7cd64182a6e1b32f3e11082a" : [ {
+    "menuCode" : "696df4cc7cd64182a6e1b32f3e11082a",
+    "code" : "1ad64470cffc43a8b6770b1b3c283670",
+    "name" : "创建根节点",
+    "icon" : "icon-plus"
+  } ]
+}

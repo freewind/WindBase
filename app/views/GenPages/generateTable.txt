@@ -1,0 +1,56 @@
+%{
+def fFixedWidth = { it>0 ? "ui-fixed-width=\"${it}\"" : '' };
+def fMaxLineHeight = { it>0 ? "ng-style=\"{'max-height': '${it}px'}\"" : ''};
+}%
+
+${'#'}{extends 'admin.html'/}
+<div ng-controller="Ctrl">
+    <table class="table table-striped">
+        <thead>
+        <tr>
+        #{if showCheckBoxes}
+            <th><input type="checkbox" ng-click="toggleAllCheckboxes()" ng-checked="allRowsChecked()"/></th>
+        #{/if}
+            <th><input type="checkbox"/></th>#{list modelFields, as: 'f'}
+            <th ${fFixedWidth.call(f.width).raw()}>${f.label}</th>#{/list}
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="row in rows" ${fMaxLineHeight.call(maxLineHeight).raw()}
+                #{if maxLineHeight>0}
+                    ui-max-height="rowMaxHeight" ng-click="toggleRowHeight()" ng-controller="RowCtrl"
+                #{/if}
+                >
+        #{if showCheckBoxes}
+            <td><input type="checkbox" ng-model="row.checked" onclick="event.stopPropagation()"/></td>
+        #{/if}
+            #{list modelFields, as: 'f'}
+            <td ${fFixedWidth.call(f.width).raw()}>{{row.${f.name}}}</td>#{/list}
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<script type="text/javascript">
+    function Ctrl($scope, JsRoutes) {
+        $scope.getRows = function() {
+            JsRoutes.xxx.list.post({}, function(rows){
+                $scope.rows = rows;
+            });
+        }
+    }
+    #{if maxLineHeight>0}
+    var ROW_MAX_HEIGHT = ${maxLineHeight};
+    function RowCtrl($scope) {
+        $scope.rowMaxHeight = ROW_MAX_HEIGHT;
+        $scope.toggleRowHeight = function () {
+            if ($scope.rowMaxHeight == ROW_MAX_HEIGHT) {
+                $scope.rowMaxHeight = 'auto';
+            } else {
+                $scope.rowMaxHeight = ROW_MAX_HEIGHT;
+            }
+        }
+    }
+    #{/if}
+
+</script>

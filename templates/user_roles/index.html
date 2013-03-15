@@ -1,0 +1,123 @@
+<style type="text/css">
+    #THIS_PANEL {
+        position: relative;
+    }
+
+    #LEFT_TREE {
+        position: absolute;
+        left: 0px;
+        top: 0px;
+        width: 160px;
+    }
+
+    #RIGHT_PANEL {
+        position: absolute;
+        top: 0px;
+        right: 0px;
+        left: 160px;
+    }
+
+    .right_menu li {
+        display: inline-block;
+    }
+
+    .privilege_button_option {
+        display: inline-block;
+    }
+
+    .privilege_title {
+        background-color: #eee;
+        line-height: 30px;
+        border-bottom: 1px solid #DDD;
+    }
+
+    .privilege_button_panel {
+        line-height: 30px;
+        color: #333;
+    }
+
+    .selected {
+        background-color: #DDD;
+    }
+</style>
+
+<div id="THIS_PANEL">
+    <div id="LEFT_TREE">
+        <div class="btn-group">
+            <button class="btn" button-code="c7a10afa01a441d49152eec8d3dee18c" ng-click="showAddRoleDialog()">
+                新建
+            </button>
+        </div>
+        <ul>
+            <li ng-repeat="role in roles">
+                <a ng-click="selectRole(role)" ng-class="{selected: role==selectedRole}">{{role.name}}</a>
+            </li>
+        </ul>
+    </div>
+    <div id="RIGHT_PANEL" ng-show="selectedRole">
+        <tabs>
+            <pane heading="基本信息">
+                <div>
+                    <div class="btn-group">
+                        <button class="btn" button-code="09d84dfac3044a05b8c199bbf9208a7c" ng-click="showEditRoleDialog()" ng-disabled="!selectedRole">
+                            编辑
+                        </button>
+                        <button class="btn" button-code="f0c14b7453d940bf941b4fc65c711c1a">
+                            删除
+                        </button>
+                    </div>
+                    {{selectedRole.name}}
+                </div>
+                <div>
+                    <div>
+                        <div class="btn-group">
+                            <button class="btn" button-code="78091141031a4671a65fc84fbd7ec179" ng-click="showAddUserToRoleDialog()"
+                                    ng-disabled="!selectedRole">
+                                向角色中添加用户
+                            </button>
+                            <button class="btn" button-code="ee4e60f1a67e4610ae7e0f5ee5e741c4"
+                                    ng-disabled="!selectedRole || selectedRows.length==0"
+                                    ng-click="removeUsersFromRole()">
+                                从角色中删除用户
+                            </button>
+                            <button class="btn" button-code="8a2f43326574418e8ac0006abb0cf442"
+                                    ng-click="configureGrid()">
+                                配置表格
+                            </button>
+                        </div>
+                    </div>
+                    <div grid="{
+                        id: 'f8bb0e1ef207405cb8090246be8962c4',
+                        pager: 'selectedRole.users',
+                        onSelectedRows: 'onSelectedRows',
+                        onSelectPage: 'onSelectPage'
+                    }"></div>
+                </div>
+            </pane>
+            <pane heading="菜单权限">
+                <div ng-repeat="node in menuTree">
+                    <div ng-include="'node_for_buttons.html'"></div>
+                </div>
+            </pane>
+            <pane heading="站点权限">TODO</pane>
+            <pane heading="栏目权限">TODO</pane>
+            <pane heading="文档权限">TODO</pane>
+        </tabs>
+    </div>
+</div>
+
+
+<script type="text/ng-template" id="node_for_buttons.html">
+    <div ng-style="{'padding-left':node.level*20}">
+        <div class="privilege_title">
+            <input type="checkbox" ng-click="toggleSelfAndChildren(node)" ng-checked="checkSelfAndChildren(node)"/>
+            <span>{{node.name}}</span>
+        </div>
+        <div class="privilege_button_panel">
+            <label class="privilege_button_option" ng-repeat="button in selectedRole.privilegeButtonsMap[node.code]">
+                <input type="checkbox" ng-click="togglePrivilegeButton(button)" ng-checked="button.selected"/>{{button.name}}
+            </label>
+        </div>
+        <div ng-repeat="node in node.children" ng-include="'node_for_buttons.html'"></div>
+    </div>
+</script>

@@ -1,0 +1,212 @@
+[ {
+  "id" : "f8bb0e1ef207405cb8090246be8962c4",
+  "data" : "selectedRole.users",
+  "columnDefs" : [ {
+    "field" : "email",
+    "displayName" : "Email",
+    "width" : 120
+  }, {
+    "field" : "username",
+    "displayName" : "用户名",
+    "width" : 60
+  }, {
+    "field" : "roles",
+    "displayName" : "所属角色",
+    "cellTemplate" : "{{cellValue|propertyJoin:'name'}}",
+    "width" : 160
+  }, {
+    "field" : "disabled",
+    "displayName" : "状态",
+    "cellTemplate" : "{{cellValue && '禁用' || '正常'}}",
+    "width" : 60
+  }, {
+    "field" : "createdAt",
+    "displayName" : "创建时间",
+    "width" : 140
+  } ]
+}, {
+  "data" : "rows"
+}, {
+  "id" : "4028B8813CF2AA9B013CF2B9E6F50001",
+  "data" : "rows",
+  "columnDefs" : [ {
+    "field" : "timeUnit",
+    "displayName" : "时间单位",
+    "width" : 60
+  }, {
+    "field" : "start",
+    "displayName" : "起始时间",
+    "width" : 130
+  }, {
+    "field" : "index",
+    "displayName" : "时间尾值",
+    "width" : 60
+  }, {
+    "field" : "totalCount",
+    "displayName" : "Total",
+    "width" : 80
+  }, {
+    "field" : "getCount",
+    "displayName" : "GET",
+    "width" : 80
+  }, {
+    "field" : "postCount",
+    "displayName" : "POST",
+    "width" : 80
+  }, {
+    "field" : "ajaxCount",
+    "displayName" : "AJAX",
+    "width" : 80
+  }, {
+    "field" : "pageCount",
+    "displayName" : "PAGE",
+    "width" : 80
+  }, {
+    "field" : "jsCount",
+    "displayName" : "JS",
+    "width" : 80
+  }, {
+    "field" : "cssCount",
+    "displayName" : "CSS",
+    "width" : 80
+  }, {
+    "field" : "imageCount",
+    "displayName" : "图片",
+    "width" : 80
+  }, {
+    "field" : "otherResourceCount",
+    "displayName" : "其它资源",
+    "width" : 80
+  } ]
+}, {
+  "id" : "4028B8813CF2AA9B013CF2AA9B010000",
+  "data" : "rows",
+  "columnDefs" : [ {
+    "field" : "id",
+    "displayName" : "ID",
+    "width" : 40,
+    "style" : {
+      "text-align" : "center"
+    }
+  }, {
+    "field" : "ajax",
+    "displayName" : "AJAX",
+    "width" : 40,
+    "style" : {
+      "text-align" : "center"
+    }
+  }, {
+    "field" : "method",
+    "displayName" : "METHOD",
+    "width" : 60,
+    "style" : {
+      "text-align" : "center"
+    }
+  }, {
+    "field" : "url",
+    "displayName" : "URL",
+    "width" : 160
+  }, {
+    "field" : "queryString",
+    "displayName" : "Query String",
+    "width" : 160
+  }, {
+    "field" : "remoteIp",
+    "displayName" : "Remote IP",
+    "width" : 80,
+    "style" : {
+      "text-align" : "center"
+    }
+  }, {
+    "field" : "referer",
+    "displayName" : "referer",
+    "width" : 160
+  }, {
+    "field" : "params",
+    "displayName" : "params",
+    "width" : 160
+  }, {
+    "field" : "headers",
+    "displayName" : "headers",
+    "width" : 160
+  }, {
+    "field" : "createdAt",
+    "displayName" : "CreatedAt",
+    "cellTemplate" : "{{cellValue|formatDate:'YYYY-MM-DD HH:mm:ss.SSS'}}",
+    "width" : 180,
+    "style" : {
+      "text-align" : "center"
+    }
+  } ],
+  "onSelectPage" : "onSelectPage"
+}, {
+  "id" : "402880843CAE4701013CAE4701B60000",
+  "columnDefs" : [ {
+    "field" : "title",
+    "displayName" : "标题",
+    "width" : 180
+  }, {
+    "field" : "content",
+    "displayName" : "内容",
+    "width" : 250
+  }, {
+    "field" : "category.name",
+    "displayName" : "所属分类",
+    "width" : 120
+  }, {
+    "field" : "createdAt",
+    "displayName" : "创建时间",
+    "width" : 150
+  }, {
+    "field" : "updatedAt",
+    "displayName" : "更新时间",
+    "width" : 150
+  } ]
+}, {
+  "id" : "402880843CAE4701013CAE594B390001",
+  "columnDefs" : [ {
+    "field" : "email",
+    "displayName" : "Email",
+    "width" : 150
+  }, {
+    "field" : "username",
+    "displayName" : "用户名",
+    "width" : 100
+  }, {
+    "field" : "disabled",
+    "displayName" : "用户状态",
+    "cellTemplate" : "{{cellValue && '禁用' || '正常'}}",
+    "width" : 80,
+    "style" : {
+      "text-align" : "center"
+    }
+  }, {
+    "field" : "lastLoginAt",
+    "displayName" : "最后登录时间",
+    "width" : 120
+  }, {
+    "field" : "lastLoginIp",
+    "displayName" : "最后登录IP",
+    "width" : 120
+  }, {
+    "field" : "roles",
+    "displayName" : "所属角色",
+    "cellTemplate" : "{{cellValue|propertyJoin:'name'}}",
+    "width" : 120
+  }, {
+    "field" : "createdAt",
+    "displayName" : "创建于",
+    "width" : 140
+  } ]
+}, {
+  "id" : "402881E43D693D59013D693D59B30000",
+  "columnDefs" : [ {
+    "field" : "code",
+    "displayName" : "code",
+    "width" : 200
+  }, {
+    "field" : "value",
+    "displayName" : "value",
+    "width" : 200
+  } ]
+} ]

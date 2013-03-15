@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+
+<html ng-app="myApp">
+<head>
+    <title>Wind Base</title>
+    <meta charset="UTF-8">
+    <!--[if lte IE 8]>
+    <script>
+        // The ieshiv takes care of our ui.directives, bootstrap module directives and
+        // AngularJS's ng-view, ng-include, ng-pluralize and ng-switch directives.
+        // However, IF you have custom directives (yours or someone else's) then
+        // enumerate the list of tags in window.myCustomTags
+
+        window.myCustomTags = [ 'yourDirective', 'somebodyElsesDirective' ]; // optional
+    </script>
+    <script src="/public/libs/angular-ui-0.3.2/angular-ui-ieshiv.min.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" type="text/css" href="/public/libs/bootstrap-2.1.1/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="/public/libs/font-awesome/3.0/css/font-awesome.css"/>
+    <!--[if IE 7]>
+    <link rel="stylesheet" type="text/css" href="/public/libs/font-awesome/3.0/css/font-awesome-ie7.min.css">
+    <![endif]-->
+    <link rel="stylesheet" type="text/css" href="/public/stylesheets/main.css">
+</head>
+<body ng-controller="admins.RootCtrl">
+
+<div id="TOP_PANEL">
+    <div class="navbar">
+        <div class="navbar-inner">
+            <div class="container">
+                <a class="brand" href="#">Wind Base</a>
+                <div class="navbar-content">
+                    <ul class="nav">
+                        <li ng-repeat="root in menuTree" class="ng-cloak" ng-class="{active: currentRootMenuNode===root}">
+                            <a ng-href="{{TreeHelper.findFirstHas(menuTree, root, 'link').link}}">{{root.name}}</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="LEFT_SIDEBAR" ng-show="showSideMenu()">
+    <style type="text/css">
+        #admin_left_menu ul, #admin_left_menu li {
+            list-style: none;
+            padding-left: 0px;
+            margin-left: 0px;
+        }
+
+        #admin_left_menu li {
+            line-height: 30px;
+        }
+    </style>
+    <div id="admin_left_menu">
+        <!-- #{render 'Admins/_leftMenuTag.html', node: currentRootMenuNode /} -->
+        <script type="text/ng-template" id="side_tree_node.html">
+            <span menu-code="{{node.code}}">
+            <a href="{{node.link}}">{{node.name}}</a>
+            </span>
+            <ul>
+                <li ng-repeat="node in node.children" ng-include="'side_tree_node.html'"></li>
+            </ul>
+        </script>
+        <ul>
+            <li ng-repeat="node in currentRootMenuNode.children" ng-include="'side_tree_node.html'"></li>
+        </ul>
+    </div>
+
+</div>
+
+<div id="MAIN_PANEL" ng-style="{left: showSideMenu() && 'inherite' || 0}">
+    <div ng-view></div>
+</div>
+
+</body>
+
+<script src="/public/libs/es5-shim/15.3.4.5/es5-shim.min.js" charset="utf-8"></script>
+<script src="/public/libs/jquery-ui-1.8.24/js/jquery-1.8.2.min.js" charset="utf-8"></script>
+<script src="/public/libs/jquery-ui-1.8.24/js/jquery-ui-1.8.24.custom.min.js" charset="utf-8"></script>
+<script src="/public/libs/underscore/1.4.3/underscore.min.js" charset="utf-8"></script>
+<script src="/public/libs/underscore.string/2.3.0/underscore.string.js" charset="utf-8"></script>
+<script src="/public/libs/bootstrap-2.1.1/js/bootstrap.min.js" charset="utf-8"></script>
+<script src="/public/libs/angular/1.1.3/angular.js" charset="utf-8"></script>
+<script src="/public/libs/angular-ui/0.4.0/angular-ui.js" charset="utf-8"></script>
+<script src="/public/libs/bootstrap-ui/0.1.0/ui-bootstrap-0.1.0.js" charset="utf-8"></script>
+<script src="/public/libs/bootstrap-ui/0.1.0/ui-bootstrap-tpls-0.1.0.js" charset="utf-8"></script>
+<script src="/public/libs/ng-grid/1.6.3/ng-grid-1.6.3.js" charset="utf-8"></script>
+<script src="/public/libs/ng-grid/1.6.3/ng-grid-layout.js" charset="utf-8"></script>
+<script src="/public/libs/marked.js" charset="utf-8"></script>
+<script src="/public/libs/slickswitch/js/jquery.slickswitch.js" charset="utf-8"></script>
+<script src="/public/libs/html5.js" charset="utf-8"></script>
+<script src="/public/libs/flot/0.7/jquery.flot.js" charset="utf-8"></script>
+<script src="/public/libs/moment/1.7.2/moment.min.js" charset="utf-8"></script>
+<script src="/public/libs/jsbeautier/beautify.js" charset="utf-8"></script>
+<script src="/public/libs/codemirror/3.1/lib/codemirror.js" charset="utf-8"></script>
+<script src="/public/libs/codemirror/3.1/mode/javascript/javascript.js" charset="utf-8"></script>
+<script src="/public/libs/jsl/jsl.format.js" charset="utf-8"></script>
+<script src="/public/libs/jsl/jsl.parser.js" charset="utf-8"></script>
+<script src="/jsRoutes.js" charset="utf-8"></script>
+<script src="/admin_common_data.js" charset="utf-8"></script>
+<script src="/current_user_data.js" charset="utf-8"></script>
+
+<script src="/templates/admin_menus/admin_menus.js" charset="utf-8"></script>
+<script src="/templates/admins/admins.js" charset="utf-8"></script>
+<script src="/templates/gen_pages/gen_pages.js" charset="utf-8"></script>
+<script src="/templates/http_request_monitors/http_request_monitors.js" charset="utf-8"></script>
+<script src="/templates/http_request_summaries/http_request_summaries.js" charset="utf-8"></script>
+<script src="/templates/privilege_buttons/privilege_buttons.js" charset="utf-8"></script>
+<script src="/templates/user_roles/user_roles.js" charset="utf-8"></script>
+<script src="/templates/users/users.js" charset="utf-8"></script>
+<script src="/templates/articles/articles.js" charset="utf-8"></script>
+<script src="/templates/gen_pages/gen_pages.js" charset="utf-8"></script>
+<script src="/templates/internal_code_values/internal_code_values.js" charset="utf-8"></script>
+
+<script src="/public/javascripts/angular-config.js" charset="utf-8"></script>
+<script src="/public/javascripts/services.js" charset="utf-8"></script>
+<script src="/public/javascripts/filters.js" charset="utf-8"></script>
+<script src="/public/javascripts/directives.js" charset="utf-8"></script>
+<script src="/public/javascripts/controllers.js" charset="utf-8"></script>
+
+<link rel="stylesheet" type="text/css" href="/public/libs/jquery-ui-1.8.24/css/smoothness/jquery-ui-1.8.24.custom.css" rel="stylesheet"/>
+<link rel="stylesheet" type="text/css" href="/public/libs/google-code-prettify/bootstrap-prettify.css">
+<link rel="stylesheet" type="text/css" href="/public/libs/angular-ui/0.4.0/angular-ui.css">
+<!-- <link rel="stylesheet" type="text/css" href="/public/libs/ng-grid/1.6.3/ng-grid.css"> -->
+<link rel="stylesheet" type="text/css" href="/public/libs/slickswitch/css/slickswitch.css"/>
+<link rel="stylesheet" type="text/css" href="/public/libs/codemirror/3.1/lib/codemirror.css"/>
+<link rel="stylesheet" type="text/css" href="/public/libs/codemirror/3.1/theme/monokai.css"/>
+
+</html>

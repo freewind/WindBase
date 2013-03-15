@@ -1,0 +1,122 @@
+
+// http://angular-ui.github.com/ng-grid/#/api
+admin.directive('configureGrid', ['JsRoutes', function (JsRoutes) {
+    return {
+        restrict: "A",
+        controller: function ($scope, $element, $attrs, $transclude) {
+            // vars
+            $scope.columnDefs = [];
+            $scope.gridColumns = []; // store grid columns to send to server
+            $scope.configureGridModalShown = false;
+            $scope.gridId = null;
+            $scope.layoutPlugin1 = new ngGridLayoutPlugin();
+            $scope.gridOptions = {};
+            $scope.gridWidth = 500;
+
+            // for parent scope
+            $scope.$parent.configureGrid = function () {
+                $scope.configureGridModalShown = true;
+            }
+
+            // get gridId and dataName
+            var params = $scope.$parent.$eval($attrs["configureGrid"]);
+            $scope.gridId = params.id;
+            var dataName = params.dataName;
+
+            $scope.gridOptions = {
+                data: dataName,
+                columnDefs: 'columnDefs',
+                plugins: [$scope.layoutPlugin1]
+            }
+
+            // retrieve gridOptions from server
+            JsRoutes.Directives.getGridOptions.get({
+                id: $scope.gridId
+            }, function (options) {
+                if (options && options.columns) {
+                    $scope.columnDefs = options.columns;
+                }
+            });
+
+            $scope.getFields = function () {
+                var data = $scope.$eval(dataName);
+                if (data && data.length > 0) {
+                    var keys = _.keys(data[0]);
+                    return _.reject(keys, function (key) {
+                        return _.find($scope.columnDefs, function (col) {
+                            return col.field === key;
+                        });
+                    });
+                }
+                return [];
+            }
+
+            $scope.addColumn = function (field) {
+                $scope.columnDefs.push({
+                    field: field,
+                    displayName: field,
+                    width: 100
+                });
+            }
+            $scope.removeColumn = function (col) {
+                $scope.columnDefs = _.reject($scope.columnDefs, function (c) {
+                    return c.field == col.field;
+                });
+            }
+
+            $scope.saveGridOptions = function () {
+                JsRoutes.Directives.saveGridOptions.post({
+                    id: $scope.gridId,
+                    columns: $scope.gridColumns
+                }, function () {
+                    $scope.configureGridModalShown = false;
+                }, null, {
+                    postType: 'json'
+                });
+            }
+
+            $scope.$watch('gridWidth', function () {
+                $scope.layoutPlugin1.updateGridLayout();
+            });
+
+            $scope.$watch(dataName, function (data) {
+                if (data && data.length > 0 && $scope.columnDefs.length == 0) {
+                    _.each($scope.getFields(), function (f) {
+                        $scope.addColumn(f);
+                    });
+                }
+            })
+
+            $scope.$on('ngGridEventColumns', function (newColumns) {
+                var columns = newColumns.targetScope.columns;
+                columns = _.reject(columns, function (col) {
+                    return col.field === '✔';
+                });
+                $scope.gridColumns = _.map(columns, function (col) {
+                    return {
+                        field: col.field,
+                        displayName: col.displayName,
+                        width: col.width
+                    }
+                });
+                $scope.columnDefs = $scope.gridColumns;
+                var total = 0;
+                _.each($scope.gridColumns, function (col) {
+                    total += col.width;
+                });
+                $scope.gridWidth = total;
+                $scope.layoutPlugin1.updateGridLayout();
+            })
+
+            $scope.changeGridWidth = function (delta) {
+                var cols = $scope.columnDefs;
+                if (cols) {
+                    var last = cols[cols.length - 1];
+                    last.width += delta;
+                }
+            }
+        },
+        scope: true,
+        templateUrl: JsRoutes.Directives.configureGrid.link({format: 'html'})
+    }
+}])

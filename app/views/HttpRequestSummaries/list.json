@@ -1,0 +1,41 @@
+{
+  "totalCount" : ${summaries.totalCount},
+  "pageSize": ${summaries.pageSize},
+  "page": ${summaries.page},
+  "pageCount" : ${summaries.pageCount},
+  "list": [
+     #{list summaries, as: 'summary', separator: ','}
+     {
+         "timeUnit": ${summary.timeUnit},
+         "start":   #{if summary.timeUnit==models.HttpRequestSummary.TimeUnit.minute}
+                    ${summary.timeStart.format('yyyy-MM-dd HH:mm')}
+                    #{/if}
+                    #{elseif summary.timeUnit==models.HttpRequestSummary.TimeUnit.hour}
+                    ${summary.timeStart.format('yyyy-MM-dd HH')}
+                    #{/elseif}
+                    #{elseif summary.timeUnit==models.HttpRequestSummary.TimeUnit.day || summary.timeUnit==models.HttpRequestSummary.TimeUnit.week}
+                    ${summary.timeStart.format('yyyy-MM-dd')}
+                    #{/elseif}
+                    #{elseif summary.timeUnit==models.HttpRequestSummary.TimeUnit.month}
+                    ${summary.timeStart.format('yyyy-MM')}
+                    #{/elseif}
+                    #{elseif summary.timeUnit==models.HttpRequestSummary.TimeUnit.year}
+                    ${summary.timeStart.format('yyyy')}
+                    #{/elseif}
+                    #{else}
+                        unknown: ${summary.timeUnit}
+                    #{/else},
+        "index": ${summary.index},
+        "totalCount":${summary.totalCount},
+        "getCount":${summary.getCount},
+        "postCount":${summary.postCount},
+        "ajaxCount":${summary.ajaxCount},
+        "pageCount":${summary.pageCount},
+        "jsCount":${summary.jsCount},
+        "cssCount":${summary.cssCount},
+        "imageCount":${summary.imageCount},
+        "otherResourceCount":${summary.otherResourceCount}
+     }
+     #{/list}
+  ]
+}

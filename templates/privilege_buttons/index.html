@@ -1,0 +1,99 @@
+<style type="text/css">
+    #menu_tree_view {
+        padding: 0px 40px;
+    }
+
+    #menu_tree_view ul, #menu_tree_view li {
+        list-style: none;
+        padding-left: 0px;
+        margin-left: 0px;
+    }
+
+    #menu_tree_view .row {
+        line-height: 44px;
+        border-bottom: 1px solid #DDDDDD;
+    }
+
+    #menu_tree_view .row:hover {
+        background-color: #EEEEEE;
+    }
+
+    #menu_tree_view .menu_label {
+        padding-right: 20px;
+        display: inline-block;
+        width: 300px;
+    }
+
+    #menu_tree_view .menu_ops {
+        display: inline-block;
+    }
+
+    #menu_tree_view .menu_buttons {
+        display: inline-block;
+    }
+
+    #menu_tree_view .menu_button {
+        margin-left: 5px;
+        margin-right: 5px;
+    }
+
+    #add-button-modal .control-group {
+        margin-bottom: 5px;
+    }
+
+    #add-button-modal .control-label {
+        width: 120px;
+    }
+
+    #add-button-modal .controls {
+        margin-left: 130px;
+    }
+
+    .icon_container {
+        display: inline-block;
+        width: 26px;
+        height: 26px;
+        line-height: 26px;
+        text-align: center;
+    }
+
+    .icon_container:hover {
+        background-color: #EEE;
+    }
+</style>
+
+<div>
+    <script type="text/ng-template" id="tree_item.html">
+        <div class="row">
+            <span class="menu_label">
+                <span menu-code="{{item.code}}">
+                    {{item.name}}
+                </span>
+                <span ng-show="item.link" class="menu_link">( {{item.link}} )</span>
+            </span>
+            <span class="menu_buttons">
+                <div class="btn-toolbar">
+                    <div class="btn-group">
+                        <button class="btn" ng-click="showAddButtonDialog(item)">+</button>
+                        <button class="btn" ng-click="showCopyButtonDialog(item)">Copy</button>
+                    </div>
+                    <div class="btn-group">
+                        <button ng-repeat="button in buttonsMap[item.code]" class="btn " ng-click="editButton(button)">
+                            <span ng-show="button.icon"><i ng-class="button.icon">&nbsp;</i> </span>{{button.name}}
+                        </button>
+                    </div>
+                </div>
+            </span>
+        </div>
+        <ul>
+            <li ng-repeat="item in item.children" ng-include="'tree_item.html'"></li>
+        </ul>
+    </script>
+
+    <div id="menu_tree_view">
+        <ul>
+            <li ng-repeat="item in menuTree" ng-include="'tree_item.html'"></li>
+        </ul>
+    </div>
+
+</div>

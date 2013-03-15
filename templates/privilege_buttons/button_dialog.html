@@ -1,0 +1,64 @@
+<div id="add-button-modal">
+    <div class="modal-header">
+        <button class="close pull-right" ng-click="close()">&times;</button>
+        <h3>添加按钮</h3>
+    </div>
+    <div class="modal-body">
+        <form class="form-horizontal">
+            <div class="control-group">
+                <label class="control-label">所属页面：</label>
+                <div class="controls">
+                    <span ng-show="item.icon"><i ng-class="currentMenuItem.icon">&nbsp;</i></span>
+                    {{currentMenuItem.name}}
+                    <span ng-show="currentMenuItem.link">( {{currentMenuItem.link}} )</span>
+                </div>
+            </div>
+            <div class="control-group" ng-show="buttonCode">
+                <label class="control-label">按钮代码：</label>
+                <div class="controls">
+                    {{buttonCode}}
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">按钮名称：</label>
+                <div class="controls">
+                    <input type="text" class="input-normal" ng-model="buttonName" autofocus="buttonDialogShown"/>
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">图标：</label>
+                <div class="controls">
+                    <button class="btn" ng-click="toggleIconPanel()">
+                        <i ng-class="hoverIcon || buttonIcon"> </i>&nbsp;{{buttonName || '选择'}}
+                    </button>
+                    {{hoverIcon}}
+                </div>
+            </div>
+            <div ng-show="iconPanelShown">
+                <div>
+                    查询图标：<input class="input input-search" ng-model="search" autofocus="iconPanelShown"/>
+                    <button ng-click="search=null" class="btn">x</button>
+                </div>
+                <div>
+                   <span ng-repeat="icon in icons | filter: search" class="icon_container" ng-click="selectIcon(icon)"
+                         ng-mouseenter="$parent.hoverIcon=icon">
+                        <i ng-class="icon">&nbsp; </i>
+                    </span>
+                </div>
+            </div>
+        </form>
+        <div ng-show="showCopyInDialog" class="well">
+            &lt;button class="btn" button-code="{{buttonCode}}"&gt;
+            {{buttonName}}
+            &lt;/button&gt;
+        </div>
+    </div>
+    <div class="modal-footer">
+            <span class="pull-left" ng-show="currentButton">
+                <button class="btn" ng-click="removeButton()">Delete</button>
+                <button class="btn" ng-click="toggleSingleCopy()">Copy</button>
+            </span>
+        <a class="btn btn-primary" data-dismiss="modal" ng-click="createOrUpdateButton()">提交</a>
+        <a class="btn" ng-click="close()">关闭</a>
+    </div>
+</div>

@@ -1,0 +1,12 @@
+<script type="text/javascript">
+    app.value("ExData",{
+        rows: [
+            ${"#{list rows, as: 'row', separator: ','}"}
+            {
+            #{list modelFields, as: 'f', separator: ','}
+            ${f.name} : ${'$'}{row.${f.name}.toJson()}#{/list}
+            }
+            ${'#{/list}'}
+        ];
+    });
+</script>

@@ -1,0 +1,34 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Home page
+# GET     /                                       Application.index
+GET     /jsRoutes.js                            Assets.jsRoutes
+GET     /admin_common_data.js                   Admins.getCommonData
+GET     /current_user_data.js                   Admins.getCurrentUserData
+GET     /admins                                 Admins.index
+
+# WS      /livereload                            LiveReloadController.handle
+
+# Ignore favicon requests
+GET     /favicon.ico                            404
+
+GET     /typescripts/{<.*>path}                TypeScriptCompiler.get(path)
+
+GET     /templates                              Templates.get(null)
+GET     /templates/{<.*>path}                   Templates.get(path)
+# Map static resources from the /app/public folder to the /public path
+GET     /public/                                staticDir:public
+
+
+# *       /console                                module:wind_console
+
+# Catch all
+#*       /{controller}                           {controller}.index
+#*       /{controller}/                          {controller}.index
+#*       /{controller}/{action}                  {controller}.{action}
+
+*         /api/{controller}/{action}             {controller}.{action}
+GET       /templates/{<.*>path}  Templates.get(path)
+GET       /{<.*>path}           Templates.index

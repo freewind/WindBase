@@ -1,0 +1,22 @@
+<div>
+    <div class="modal-header">
+        <button class="close pull-right" ng-click="close()">&times;</button>
+        <h3>对应的HTML代码</h3>
+    </div>
+    <div class="modal-body">
+        <div class="well">
+        &lt;div class="btn-toolbar"&gt;
+        &lt;div class="btn-group"&gt;
+            <div ng-repeat="button in buttons">
+                &lt;button class="btn" button-code="{{button.code}}"&gt;
+                    {{button.name}}
+                &lt;/button&gt;
+            </div>
+        &lt;/div&gt;
+        &lt;/div&gt;
+        </div>
+    </div>
+    <div class="modal-footer">
+        <a class="btn" ng-click="close()">关闭</a>
+    </div>
+</div>
